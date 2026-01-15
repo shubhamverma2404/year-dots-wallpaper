@@ -11,10 +11,10 @@ Just time, quietly passing.
 ## Preview
 
 ### Dark Version
-![Dark wallpaper](screenshots/dark.png)
+![Dark wallpaper](screenshots/year_dark.png)
 
 ### Light Version
-![Light wallpaper](screenshots/light.png)
+![Light wallpaper](screenshots/year_light.png)
 
 ---
 
