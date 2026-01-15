@@ -6,7 +6,7 @@ registerFont(
   { family: "DejaVuSans" }
 )
 
-// ===== CONFIG =====
+// CONFIG 
 const WIDTH = 2560
 const HEIGHT = 1600
 const DOT_SIZE = 18
@@ -19,7 +19,7 @@ const FUTURE_COLOR = "#b5b5b7"
 const TODAY_COLOR = "#007aff"
 
 export default function handler(req, res) {
-  // ===== DATE LOGIC =====
+  // DATE LOGIC 
   const today = new Date()
   const year = today.getFullYear()
 
@@ -35,7 +35,7 @@ export default function handler(req, res) {
   const daysLeft = totalDays - dayOfYear
   const percentDone = Math.floor((dayOfYear / totalDays) * 100)
 
-  // ===== CANVAS =====
+  // CANVAS 
   const canvas = createCanvas(WIDTH, HEIGHT)
   const ctx = canvas.getContext("2d")
 
@@ -51,7 +51,7 @@ export default function handler(req, res) {
   const startX = (WIDTH - gridWidth) / 2
   const startY = (HEIGHT - gridHeight) / 2
 
-  // ===== DRAW DOTS =====
+  // DRAW DOTS 
   for (let day = 1; day <= totalDays; day++) {
     const index = day - 1
     const row = Math.floor(index / COLUMNS)
@@ -82,16 +82,16 @@ export default function handler(req, res) {
     }
   }
 
-  // ===== YEAR ABOVE GRID =====
+  // YEAR ABOVE GRID 
   const yearText = String(year)
 
   ctx.fillStyle = "#6e6e73"
-  ctx.font = "24px DejaVuSans-ExtraLight" // slightly bigger than bottom text
+  ctx.font = "24px DejaVuSans-ExtraLight" 
   ctx.textAlign = "center"
 
   ctx.fillText(yearText, WIDTH / 2, startY - 60)
 
-  // ===== TEXT =====
+  // TEXT 
   const text = `${daysLeft}d left . ${percentDone}%`
 
   ctx.fillStyle = "#6e6e73"
@@ -100,10 +100,10 @@ export default function handler(req, res) {
 
   ctx.fillText(text, WIDTH / 2, startY + gridHeight + 60)
 
-  // ===== RESPONSE =====
+  // RESPONSE 
   const buffer = canvas.toBuffer("image/png")
 
   res.setHeader("Content-Type", "image/png")
-  res.setHeader("Cache-Control", "no-store") // IMPORTANT
+  res.setHeader("Cache-Control", "no-store") 
   res.status(200).send(buffer)
 }
